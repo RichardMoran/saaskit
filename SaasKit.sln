@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Solution Items", "_Solutio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaasKit.Multitenancy.Samples.Mvc", "samples\SaasKit.Multitenancy.Samples.Mvc\SaasKit.Multitenancy.Samples.Mvc.csproj", "{909856C1-3870-4DCF-8DE0-ED0887336716}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaasKit.Multitenancy", "src\SaasKit.Multitenancy\SaasKit.Multitenancy.csproj", "{75649D57-67F8-42FF-9751-F1E76127F64E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaasKit.Multitenancy", "src\SaasKit.Multitenancy.Owin\SaasKit.Multitenancy.csproj", "{75649D57-67F8-42FF-9751-F1E76127F64E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SaasKit.Multitenancy.Tests", "tests\SaasKit.Multitenancy.Tests\SaasKit.Multitenancy.Tests.csproj", "{FC47A35E-7331-4AF1-B2E5-A7F02A005125}"
 EndProject

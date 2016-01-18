@@ -22,7 +22,7 @@ namespace SaasKit.Multitenancy.Samples.Mvc.AspNet5
 		// For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
-			// Add MVC services to the services container.
+            // Add MVC services to the services container.
 			services.AddMvc();
 		}
 

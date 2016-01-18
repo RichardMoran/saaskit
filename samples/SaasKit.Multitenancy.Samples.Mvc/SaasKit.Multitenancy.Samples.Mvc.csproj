@@ -139,7 +139,7 @@
       <Project>{f07816be-1844-48df-af87-4a3b772c26a3}</Project>
       <Name>SaasKit.Multitenancy.Mvc</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\SaasKit.Multitenancy\SaasKit.Multitenancy.csproj">
+    <ProjectReference Include="..\..\src\SaasKit.Multitenancy.Owin\SaasKit.Multitenancy.csproj">
       <Project>{75649d57-67f8-42ff-9751-f1e76127f64e}</Project>
       <Name>SaasKit.Multitenancy</Name>
     </ProjectReference>
