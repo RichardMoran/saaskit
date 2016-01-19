@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AspNetMvcSample.Models;
 using AspNetMvcSample.Services;
+using Microsoft.Extensions.OptionsModel;
 
 namespace AspNetMvcSample
 {
@@ -38,6 +39,8 @@ namespace AspNetMvcSample
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMultitenancy<AppTenant, CachingAppTenantResolver>();
+
             // Add framework services.
             services.AddEntityFramework()
                 .AddSqlServer()
@@ -49,6 +52,9 @@ namespace AspNetMvcSample
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
+            services.AddOptions();            
+
+            services.Configure<MultitenancyOptions>(Configuration.GetSection("Multitenancy"));
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -60,6 +66,8 @@ namespace AspNetMvcSample
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseMultitenancy<AppTenant>();
 
             if (env.IsDevelopment())
             {
