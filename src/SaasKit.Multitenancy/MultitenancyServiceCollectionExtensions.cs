@@ -1,4 +1,5 @@
-﻿using SaasKit.Multitenancy;
+﻿using Microsoft.AspNet.Http;
+using SaasKit.Multitenancy;
 using SaasKit.Multitenancy.Internal;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -7,12 +8,18 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddMultitenancy<TTenant, TResolver>(this IServiceCollection services) 
             where TResolver : class, ITenantResolver<TTenant>
+            where TTenant : class
         {
             Ensure.Argument.NotNull(services, nameof(services));
 
             services.AddScoped<ITenantResolver<TTenant>, TResolver>();
-            services.AddScoped<ITenantContextAccessor<TTenant>, HttpContextTenantContextAccessor<TTenant>>();
-            services.AddScoped<ITenantAccessor<TTenant>, HttpContextTenantAccessor<TTenant>>();
+
+            // Make Tenant and TenantContext injectable
+            services.AddScoped(prov => 
+                prov.GetService<IHttpContextAccessor>()?.HttpContext?.GetTenant<TTenant>());
+
+            services.AddScoped(prov =>
+                prov.GetService<IHttpContextAccessor>()?.HttpContext?.GetTenantContext<TTenant>());
 
             // Ensure caching is available for caching resolvers
             services.AddCaching();

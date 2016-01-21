@@ -8,6 +8,13 @@ namespace AspNetMvcSample.Controllers
 {
     public class HomeController : Controller
     {
+        private AppTenant tenant;
+
+        public HomeController(AppTenant tenant)
+        {
+            this.tenant = tenant;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -15,7 +22,7 @@ namespace AspNetMvcSample.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = $"Your application description page for {tenant?.Name ?? "Default"}";
 
             return View();
         }

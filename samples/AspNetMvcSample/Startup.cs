@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using AspNetMvcSample.Models;
 using AspNetMvcSample.Services;
 using Microsoft.Extensions.OptionsModel;
+using SaasKit.Multitenancy;
 
 namespace AspNetMvcSample
 {
@@ -66,6 +67,7 @@ namespace AspNetMvcSample
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.CreateLogger("test").LogDebug("testing");
 
             app.UseMultitenancy<AppTenant>();
 
