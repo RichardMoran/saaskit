@@ -13,6 +13,7 @@ using AspNetMvcSample.Models;
 using AspNetMvcSample.Services;
 using Microsoft.Extensions.OptionsModel;
 using SaasKit.Multitenancy;
+using Microsoft.Extensions.Logging.Console;
 
 namespace AspNetMvcSample
 {
@@ -65,11 +66,9 @@ namespace AspNetMvcSample
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.MinimumLevel = LogLevel.Debug;
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));           
             loggerFactory.AddDebug();
-            loggerFactory.CreateLogger("test").LogDebug("testing");
-
-            app.UseMultitenancy<AppTenant>();
 
             if (env.IsDevelopment())
             {
@@ -97,6 +96,8 @@ namespace AspNetMvcSample
             app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
 
             app.UseStaticFiles();
+
+            app.UseMultitenancy<AppTenant>();
 
             app.UseIdentity();
 

@@ -26,14 +26,18 @@ namespace SaasKit.Multitenancy.Internal
             Ensure.Argument.NotNull(context, nameof(context));
             Ensure.Argument.NotNull(tenantResolver, nameof(tenantResolver));
 
-            log.LogDebug($"Resolving Tenant using {tenantResolver.GetType().Name}.");
+            log.LogDebug("Resolving TenantContext using {loggerType}.", tenantResolver.GetType().Name);
 
             var tenantContext = await tenantResolver.ResolveAsync(context);
 
             if (tenantContext != null)
             {
-                log.LogDebug("Setting Tenant Context.");
+                log.LogVerbose("TenantContext Resolved. Adding to HttpContext.");
                 context.SetTenantContext(tenantContext);
+            }
+            else
+            {
+                log.LogDebug("TenantContext Not Resolved.");
             }
 
             await next.Invoke(context);

@@ -42,7 +42,7 @@ namespace SaasKit.Multitenancy
 
             if (tenantContext == null)
             {
-                log.LogDebug($"Tenant \"{cacheKey}\" not present in cache, attempting to resolve tenant.");
+                log.LogDebug("TenantContext not present in cache with key \"{cacheKey}\". Attempting to resolve.", cacheKey);
                 tenantContext = await ResolveAsync(context);
 
                 if (tenantContext != null)
@@ -50,16 +50,17 @@ namespace SaasKit.Multitenancy
                     var tenantIdentifiers = GetTenantIdentifiers(tenantContext);
                     var cacheEntryOptions = CreateCacheEntryOptions();
 
+                    log.LogDebug("TenantContext resolved. Caching with keys \"{tenantIdentifiers}\".", tenantIdentifiers);
+
                     foreach (var identifier in tenantIdentifiers)
                     {
-                        log.LogDebug($"Tenant resolved. Caching with identifier \"{identifier}\".");
                         cache.Set(identifier, tenantContext, cacheEntryOptions);
                     }
                 }
             }
             else
             {
-                log.LogDebug($"Tenant \"{cacheKey}\" retrieved from cache.");
+                log.LogDebug("TenantContext retrieved from cache with key \"{cacheKey}\".", cacheKey);
             }
 
             return tenantContext;
