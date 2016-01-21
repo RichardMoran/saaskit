@@ -1,9 +1,10 @@
 {
-  "version": "1.0.0-*",
-  "description": "SaasKit is a developers toolkit for building SaaS (Software As A Service) applications. Use this package to add multitenancy to ASP.NET 5 applications.",
+  "version": "1.0.0-alpha",
+  "description": "SaasKit is a developers toolkit for building SaaS (Software as a Service) applications. Use this package to add multitenancy to ASP.NET 5 applications.",
   "authors": [ "Ben Foster" ],
-  "tags": [ "SaasKit", "Multitenancy", "Multitenant", "Saas" ],
-  "projectUrl": "https://github.com/saaskit",
+  "tags": [ "Multitenancy", "Multitenant", "Saas" ],
+  "copyright": "Copyright © Ben Foster",
+  "projectUrl": "https://github.com/saaskit/saaskit",
   "licenseUrl": "https://github.com/saaskit/saaskit/blob/master/LICENSE.md",
   "dependencies": {
     "Microsoft.AspNet.Http.Abstractions": "1.0.0-rc1-final",
